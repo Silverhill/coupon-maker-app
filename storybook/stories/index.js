@@ -1,25 +1,15 @@
-import React from 'react';
-import { Text } from 'react-native';
+module.exports = [
+  require('./typography.stories'),
+  require('./button.stories'),
+];
 
-import { storiesOf } from '@storybook/react-native';
-import { action } from '@storybook/addon-actions';
-import { linkTo } from '@storybook/addon-links';
-
-import Button from './Button';
-import CenterView from './CenterView';
-import Welcome from './Welcome';
-
-storiesOf('Welcome', module).add('to Storybook', () => <Welcome showApp={linkTo('Button')} />);
-
-storiesOf('Button', module)
-  .addDecorator(getStory => <CenterView>{getStory()}</CenterView>)
-  .add('with text', () => (
-    <Button onPress={action('clicked-text')}>
-      <Text>Hello Button</Text>
-    </Button>
-  ))
-  .add('with some emoji', () => (
-    <Button onPress={action('clicked-emoji')}>
-      <Text>😀 😎 👍 💯</Text>
-    </Button>
-  ));
+// // import stories
+// configure(() => {
+//   require('./stories/stories/Moicon.story');
+//   require('./stories/stories/Badge.story');
+//   require('./stories/stories/TabIcon.story');
+//   require('./stories/stories/Typography.story');
+//   require('./stories/stories/ActionSheet.story');
+//   require('./stories/stories/Contents.story');
+//   require('./stories/stories/Carousel.story');
+// }, module);
