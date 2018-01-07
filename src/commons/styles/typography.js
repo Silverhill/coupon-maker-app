@@ -13,7 +13,7 @@ export default {
     medium: 20,
     large: 22,
     xLarge: 24,
-    big: 26
+    big: 28
   }
 };
 
