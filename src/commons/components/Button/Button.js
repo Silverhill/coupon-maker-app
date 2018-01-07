@@ -8,7 +8,11 @@ import { Ionicons } from '@expo/vector-icons';
 
 const StyledButton = styled(View)`
   height: 45;
-  background-color: ${props => (!props.disabled ? Palette.accent : Palette.neutral)};
+  background-color: ${props => {
+    if (props.disabled) return Palette.neutral;
+    else if (props.backgroundColor) return props.backgroundColor;
+    return Palette.accent;
+  }};
   border-radius: ${props => props.pill ? 50 : 3};
   justify-content: center;
   align-items: center;
@@ -16,8 +20,6 @@ const StyledButton = styled(View)`
   shadow-opacity: 0.3;
   shadow-radius: 2;
   flex-direction: row;
-  align-items: center;
-  justify-content: center;
 `;
 
 const LeftIcon = styled(Ionicons)`
@@ -30,11 +32,11 @@ const RightIcon = styled(Ionicons)`
   background-color: transparent;
 `;
 
-const Button = ({ title, pill, onPress, style, disabled, leftIcon, rightIcon, iconColor, ...rest }) => {
+const Button = ({ title, pill, backgroundColor, textColor, onPress, style, disabled, leftIcon, rightIcon, iconColor, ...rest }) => {
   const button = (
-    <StyledButton pill={pill} disabled={disabled} style={disabled ? style : null}>
+    <StyledButton backgroundColor={backgroundColor} pill={pill} disabled={disabled} style={disabled ? style : null}>
       {leftIcon && <LeftIcon name={leftIcon} size={20} color={iconColor ? iconColor : Palette.dark.css()} />}
-      <Typo.TextBody small bolder inverted>{title}</Typo.TextBody>
+      <Typo.TextBody small bolder inverted color={textColor}>{title}</Typo.TextBody>
       {rightIcon && <RightIcon name={rightIcon} size={20} color={iconColor ? iconColor : Palette.dark.css()} />}
     </StyledButton>
   );

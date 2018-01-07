@@ -5,43 +5,37 @@ import { TouchableOpacity, View } from 'react-native';
 import { Palette } from '../../styles';
 import Typo from '../Typography';
 import { Ionicons } from '@expo/vector-icons';
-import { LinearGradient } from 'expo';
 
-
-const StyledButton = styled(LinearGradient)`
+const StyledButton = styled(View)`
   height: 45;
-  border-radius: ${props => props.pill ? 50 : 3};
+  width: 45;
+  border-radius: 22.5;
   justify-content: center;
   align-items: center;
   shadow-offset: 0px 0px;
   shadow-opacity: 0.3;
   shadow-radius: 2;
   flex-direction: row;
+  background-color: ${props => {
+    if(props.disabled) return Palette.neutralLight;
+    else if (props.backgroundColor) return props.backgroundColor;
+    return Palette.accent
+  }};
 `;
 
-const LeftIcon = styled(Ionicons)`
-  margin-right: 5;
+const Icon = styled(Ionicons)`
   background-color: transparent;
 `;
 
-const RightIcon = styled(Ionicons)`
-  margin-left: 5;
-  background-color: transparent;
-`;
-
-const ButtonGradient = ({ title, onPress, style, disabled, leftIcon, rightIcon, iconColor, pill, ...rest }) => {
+const RoundButton = ({ onPress, backgroundColor, style, disabled, icon, iconColor, color, ...rest }) => {
   const alphaChannel = 0.4;
   const button = (
     <StyledButton
-      pill={pill}
-      colors={disabled ? [Palette.gradientOne.alpha(alphaChannel).css(), Palette.gradientTwo.alpha(alphaChannel).css()] : ['#fffd35', '#ff007c']}
-      start={[-1, 0]}
-      end={[1, 0]}
+      disabled={disabled}
+      backgroundColor={backgroundColor}
       style={disabled ? style : null}
     >
-      {leftIcon && <LeftIcon name={leftIcon} size={20} color={iconColor ? iconColor : Palette.dark.css()} />}
-      <Typo.TextBody small inverted bolder>{title}</Typo.TextBody>
-      {rightIcon && <RightIcon name={rightIcon} size={20} color={iconColor ? iconColor : Palette.dark.css()} />}
+      {icon && <Icon name={icon} size={20} color={iconColor ? iconColor : Palette.dark.css()} />}
     </StyledButton>
   );
 
@@ -54,11 +48,11 @@ const ButtonGradient = ({ title, onPress, style, disabled, leftIcon, rightIcon, 
 };
 
 
-ButtonGradient.defaultProps = {
+RoundButton.defaultProps = {
   title: 'Button',
 };
 
-ButtonGradient.propTypes = {
+RoundButton.propTypes = {
   onPress: PropTypes.func,
   title: PropTypes.string,
   style: PropTypes.any,
@@ -67,4 +61,4 @@ ButtonGradient.propTypes = {
   rightIcon: PropTypes.string,
 };
 
-export default ButtonGradient;
+export default RoundButton;

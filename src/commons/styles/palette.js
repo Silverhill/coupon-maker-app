@@ -7,8 +7,8 @@ export const colors = {
   dark: chroma('#4A4B21'),
   white: chroma('white'),
   black: chroma('black'),
-  gray: chroma('#818180'),
-  lightGray: chroma('#b7b7b3'),
+  lightGray: chroma('#e7e8eb'),
+  gray: chroma('#b7b7b3'),
   sunshineYellow: chroma('#fffd35'),
   strongPink: chroma('ff007c')
 };
@@ -25,6 +25,7 @@ const palette = {
   dark: colors.dark,
   neutral: colors.gray,
   white: colors.white,
+  neutralLight: colors.lightGray,
 
   error: colors.orange,
   gradientOne: colors.sunshineYellow,
