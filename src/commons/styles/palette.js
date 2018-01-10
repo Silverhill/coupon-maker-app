@@ -7,7 +7,7 @@ export const colors = {
   dark: chroma('#4A4B21'),
   white: chroma('white'),
   black: chroma('black'),
-  lightGray: chroma('#e7e8eb'),
+  lightGray: chroma('#e4e4e4'),
   gray: chroma('#b7b7b3'),
   sunshineYellow: chroma('#fffd35'),
   strongPink: chroma('ff007c')
